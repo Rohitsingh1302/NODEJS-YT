@@ -1,0 +1,3 @@
+what is node js? 
+:- its run time environment for java script. pehle js sirf browser mai chlta tha aur ab node js ki help 
+se hum js ke code ko hum apne system pe bhi chla skte hai. like terminal par.
