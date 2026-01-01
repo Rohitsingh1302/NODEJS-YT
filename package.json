@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/Rohitsingh1302/NODEJS-YT/issues"
   },
-  "homepage": "https://github.com/Rohitsingh1302/NODEJS-YT#readme"
+  "homepage": "https://github.com/Rohitsingh1302/NODEJS-YT#readme",
+  "dependencies": {
+    "express": "^5.2.1",
+    "url": "^0.11.4"
+  }
 }
