@@ -29,7 +29,6 @@ app.post("/users/post",(req,res)=>{
     user.push(req.body); // jo bhi data postman se bhejenge wo user array m add ho jayega
     res.json({message:"data added successfully",users:user}); // ab postman m jaake dekh skte hai, localhost/users/1001 
 }); 
-
 app.listen(8000,console.log("SERVER RUNNING")); //localhost:8000/users
 
 
