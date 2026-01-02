@@ -1,3 +1,6 @@
 what is node js? 
 :- its run time environment for java script. pehle js sirf browser mai chlta tha aur ab node js ki help 
 se hum js ke code ko hum apne system pe bhi chla skte hai. like terminal par.
+
+agar hmey rest api mai /users/1,/users/2 ka
+ data fetch krna hai tou hum /users/:id ka use krenge ,express ka feature h for dynamicallu
