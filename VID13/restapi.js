@@ -8,10 +8,9 @@ const app=exp();
 // Middleware to parse JSON bodies
 app.use(exp.urlencoded({extended: false}));
 
-
 //routes
 app.get("/",(req,res)=>{
-    res.send("HELLO ROHIT\n write /users TO GET USER DATA");
+    res.send("HELLO ROHIT FROM HOME PAGE");
 });
 
 app.get("/users",(req,res)=>{
