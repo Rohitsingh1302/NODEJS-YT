@@ -18,3 +18,9 @@
 app.all('/about',(req,res)=>{
     res.send("hello this is about page");
 })
+//module export
+module.exports=app;
+// --- IGNORE ---
+app.listen(8000,()=>{
+    console.log("listening to port 8000");
+})
