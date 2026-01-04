@@ -1,5 +1,7 @@
-const exp = require("express");
-const app = exp();
+// const exp = require("express");
+// const app = exp();
+//or
+const app = require("express")();
 
 app.get("/", (req, res) => {
     res.send("Hello from HOME page");
