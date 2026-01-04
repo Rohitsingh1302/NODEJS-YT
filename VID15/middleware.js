@@ -5,11 +5,12 @@ app.use(exp.urlencoded({extended: false}));
 
 app.use((req,res,next)=>{
   console.log("hello from middleware");
+  req.username="Rohit";
   next();
 });
 
 app.use((req,res,next)=>{
-  console.log("hello from middleware 2");
+  console.log("hello from middleware 2"+req.username);
   next();
 });
 app.get("/",(req,res)=>{
