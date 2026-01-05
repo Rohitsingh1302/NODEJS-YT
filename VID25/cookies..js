@@ -18,6 +18,18 @@ app.get("/set-cookie", (req, res) => {
   res.send("Cookie has been set");
 });
 
+// READ COOKIE
+app.get("/get-cookie", (req, res) => {
+  const user = req.cookies.username;
+  res.send("Cookie value is: " + user);
+});
+
+// DELETE COOKIE
+app.get("/delete-cookie", (req, res) => {
+  res.clearCookie("username");
+  res.send("Cookie deleted");
+});
+
 app.listen(8000, () => {
   console.log("Server running" );
 });
