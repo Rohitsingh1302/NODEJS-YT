@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/Rohitsingh1302/NODEJS-YT#readme",
   "dependencies": {
+    "cookie-parser": "^1.4.7",
     "express": "^5.2.1",
+    "nodemon": "^3.1.11",
     "url": "^0.11.4"
   }
 }
