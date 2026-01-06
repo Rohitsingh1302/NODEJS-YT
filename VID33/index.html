@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Socket.IO Demo</title>
+</head>
+<body>
+  <h2>WebSocket Demo</h2>
+
+  <!-- ✅ ONLY THIS SCRIPT -->
+  <script src="/socket.io/socket.io.js"></script>
+
+  <script>
+    const socket = io();
+
+    socket.emit("message", "Hello Server!");
+
+    socket.on("message", (msg) => {
+      console.log("Server says:", msg);
+    });
+  </script>
+</body>
+</html>
