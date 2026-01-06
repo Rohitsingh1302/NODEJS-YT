@@ -1,43 +1,71 @@
-const express = require('express');
-const mongoose = require('mongoose');
+const express = require("express");
+const mongoose = require("mongoose");
+
 const app = express();
-const { Schema, model } = mongoose;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-const bsf = new Schema({     // blueprint
-    name: String,
-    email: String,
-    salary: Number,
-    dept: String
+/* ---------- Schema ---------- */
+const soldierSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  salary: Number,
+  dept: String
 });
 
-mongoose.connect("mongodb://localhost:27017/bsf") // db connection
+/* ---------- Database Connection ---------- */
+mongoose.connect("mongodb://localhost:27017/bsf")
   .then(() => console.log("Connected to bsf database"))
   .catch(console.error);
-  
-const soldier = model('soldier', bsf);
 
-app.get("/", (req, res) => {  // START OF CREATE
-    res.send(`
+/* ---------- Model ---------- */
+const Soldier = mongoose.model("Soldier", soldierSchema);
+
+/* ---------- CREATE ---------- */
+// Form
+app.get("/", (req, res) => {
+  res.send(`
+    <h2>Add Soldier</h2>
     <form action="/add" method="post">
-      <input type="text" name="name" placeholder="name">
-      <input type="email" name="email" placeholder="email">
-      <input type="number" name="salary" placeholder="salary">
-      <input type="text" name="dept" placeholder="dept">
-      <button type="submit">Submit</button>
+      <input name="name" placeholder="Name" required><br><br>
+      <input name="email" placeholder="Email" required><br><br>
+      <input name="salary" placeholder="Salary" required><br><br>
+      <input name="dept" placeholder="Department" required><br><br>
+      <button type="submit">Add</button>
     </form>
+    <br>
+    <a href="/all">View All Soldiers</a>
   `);
 });
 
-app.post("/add", async (req, res) => { // END OF CREATE
-    console.log("BODY =", req.body);
-    const { name, email, salary, dept } = req.body;
-    const emp = new soldier({ name, email, salary, dept });
-    await emp.save();
-    res.send("soldier added");
+app.post("/add", async (req, res) => {
+  const soldier = new Soldier(req.body);
+  await soldier.save();
+  res.send("Soldier Added Successfully <br><a href='/'>Go Back</a>");
 });
 
-app.listen(3000, () => {    //server start
-    console.log("server started at `http://localhost:3000`");
+/* ---------- READ ---------- */
+app.get("/all", async (req, res) => {
+  const soldiers = await Soldier.find();
+  res.json(soldiers);
+});
+
+/* ---------- UPDATE ---------- */
+app.get("/update/:id", async (req, res) => {
+  await Soldier.findByIdAndUpdate(req.params.id, {
+    name: "VISHAL KUMAR"
+  });
+  res.send(`Soldier with ID ${req.params.id} updated to VISHAL KUMAR`);
+});   // run karne ka tareeka:- pehle data bhrdo koi v, fr uski id copy krke url me localhost:3000/update/695d514dcb3fc70576a7cbc4 krdo and enter krdo
+
+
+/* ---------- DELETE ---------- */
+app.get("/delete/:id", async (req, res) => {
+  await Soldier.findByIdAndDelete(req.params.id);
+  res.send(`Soldier with ID ${req.params.id} deleted successfully`);
+});   // run karne ka tareeka:- pehle data bhrdo koi v, fr uski id copy krke url me localhost:3000/delete/695d514dcb3fc70576a7cbc4 krdo and enter krdo
+
+/* ---------- Server ---------- */
+app.listen(3000, () => {
+  console.log("Server running at http://localhost:3000");
 });
