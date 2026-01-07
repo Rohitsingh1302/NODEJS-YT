@@ -1,6 +1,5 @@
 const express = require("express");
 const mongoose = require("mongoose");
-
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -18,7 +17,7 @@ mongoose.connect("mongodb://localhost:27017/bsf")
   .then(() => console.log("Connected to bsf database"))
   .catch(console.error);
 
-/* ---------- Model ---------- */
+/* ---------- Model ----------  what is model? Model is a class that we use to create and read documents from a collection.  */
 const Soldier = mongoose.model("Soldier", soldierSchema);
 
 /* ---------- CREATE ---------- */
@@ -35,24 +34,24 @@ app.get("/", (req, res) => {
     </form>
     <br>
     <a href="/all">View All Soldiers</a>
-  `);
+  `);  
 });
 
 app.post("/add", async (req, res) => {
   const soldier = new Soldier(req.body);
-  await soldier.save();
+  await soldier.save(); // save() method saves the document to the collection
   res.send("Soldier Added Successfully <br><a href='/'>Go Back</a>");
 });
 
 /* ---------- READ ---------- */
 app.get("/all", async (req, res) => {
-  const soldiers = await Soldier.find();
+  const soldiers = await Soldier.find(); // find() method fetches all documents from the collection
   res.json(soldiers);
 });
 
 /* ---------- UPDATE ---------- */
 app.get("/update/:id", async (req, res) => {
-  await Soldier.findByIdAndUpdate(req.params.id, {
+  await Soldier.findByIdAndUpdate(req.params.id, { // findByIdAndUpdate() method updates a document by its ID
     name: "VISHAL KUMAR"
   });
   res.send(`Soldier with ID ${req.params.id} updated to VISHAL KUMAR`);
