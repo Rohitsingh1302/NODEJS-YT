@@ -1,14 +1,11 @@
 const app = require("express")();
 const cookieParser = require("cookie-parser");
-
 // middleware
 app.use(cookieParser());
-
 // Home route
 app.get("/", (req, res) => {
   res.send("Welcome to Cookie Demo");
 });
-
 // SET COOKIE
 app.get("/set-cookie", (req, res) => {
   res.cookie("username", "Rohit", {                //res.cookie  is used to set cookie
@@ -17,13 +14,11 @@ app.get("/set-cookie", (req, res) => {
   });
   res.send("Cookie has been set");
 });
-
 // READ COOKIE
 app.get("/get-cookie", (req, res) => {                   
   const user = req.cookies.username;             //req.cookies is used to read cookie
   res.send("Cookie value is: " + user);
 });
-
 // DELETE COOKIE
 app.get("/delete-cookie", (req, res) => {
   res.clearCookie("username");                    //res.clearCookie is used to delete cookie

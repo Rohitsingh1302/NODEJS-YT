@@ -14,10 +14,10 @@ io.on("connection", (socket) => {
   });
 });
 
-app.use(express.static(path.resolve("./public")));
+app.use(express.static(path.resolve("./")));
 
 app.get("/", (req, res) => {
-  return res.sendFile("/public/index.html");
+  return res.sendFile(path.resolve("./sockett.html"));
 });
 
-server.listen(9000, () => console.log(`Server Started at PORT:9000`));
+server.listen(3002, () => console.log(`Server Started at PORT:3001`));
