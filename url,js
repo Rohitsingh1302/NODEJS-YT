@@ -1,0 +1,11 @@
+const http = require("http");
+const url = require("url");
+
+http.createServer((req, res) => {
+  const data = url.parse(req.url, true);
+
+  res.writeHead(200, { "Content-Type": "text/plain" });
+  res.end("Name is: " + data.query.name);
+}).listen(3000);
+
+console.log("Server running on port 3000");
